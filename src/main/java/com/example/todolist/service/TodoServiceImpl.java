@@ -3,6 +3,7 @@ package com.example.todolist.service;
 
 import com.example.todolist.domain.Todo;
 import com.example.todolist.repository.TodoRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +40,10 @@ public class TodoServiceImpl implements TodoService{
   public void updateComplete(Long todoId) {
     Todo todo = todoRepository.findById(todoId).orElseThrow(() -> new RuntimeException("todo가 없습니다."));
     todo.updateCompleted();
+  }
+
+  @Override
+  public List<Todo> readAll() {
+    return todoRepository.findAll();
   }
 }

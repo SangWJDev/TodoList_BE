@@ -3,6 +3,7 @@ package com.example.todolist.contoller;
 import com.example.todolist.dto.TodoRequestDto;
 import com.example.todolist.dto.TodoResponseDto;
 import com.example.todolist.service.TodoService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +28,7 @@ public class TodoController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<TodoResponseDto> read(@PathVariable Long id) {
+  public ResponseEntity<TodoResponseDto> readById(@PathVariable Long id) {
     return ResponseEntity.ok(TodoResponseDto.toDto(todoService.read(id)));
   }
 
@@ -39,8 +39,10 @@ public class TodoController {
   }
 
   @PatchMapping("/{id}")
-  public ResponseEntity<TodoResponseDto> update(@PathVariable Long id, TodoRequestDto todoRequestDto) {
-    return ResponseEntity.ok(TodoResponseDto.toDto(todoService.update(id, todoRequestDto.getDescription())));
+  public ResponseEntity<TodoResponseDto> update(@PathVariable Long id,
+      TodoRequestDto todoRequestDto) {
+    return ResponseEntity.ok(
+        TodoResponseDto.toDto(todoService.update(id, todoRequestDto.getDescription())));
   }
 
   @PatchMapping("/{id}")
@@ -48,5 +50,13 @@ public class TodoController {
     todoService.updateComplete(id);
     return ResponseEntity.ok().build();
   }
+
+  @GetMapping
+  public ResponseEntity<List<TodoResponseDto>> readAll() {
+    List<TodoResponseDto> todoResponseDtoList = todoService.readAll().stream().map(
+        TodoResponseDto::toDto).toList();
+    return ResponseEntity.ok(todoResponseDtoList);
+  }
+
 
 }

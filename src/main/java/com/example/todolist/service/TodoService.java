@@ -1,6 +1,7 @@
 package com.example.todolist.service;
 
 import com.example.todolist.domain.Todo;
+import java.util.List;
 
 public interface TodoService {
 
@@ -13,6 +14,8 @@ public interface TodoService {
   Todo update(Long todoId, String description);
 
   void updateComplete(Long todoId);
+
+  List<Todo> readAll();
 
 
 }
