@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public class TodoDto {
+public class TodoRequestDto {
 
   private String description;
 
   private boolean completed;
 
-  public static Todo toEntity(TodoDto todoDto) {
+  public static Todo toEntity(TodoRequestDto todoDto) {
     return Todo.builder().description(todoDto.description).completed(todoDto.completed).build();
   }
 
