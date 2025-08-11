@@ -10,7 +10,7 @@ public interface TodoService {
 
   void delete(Long todoId);
 
-  Todo update(Long todoId);
+  Todo update(Long todoId, String description);
 
 
 }

@@ -15,21 +15,24 @@ public class TodoServiceImpl implements TodoService{
 
   @Override
   public void create(Todo todo) {
-
+    todoRepository.save(todo);
   }
 
   @Override
   public Todo read(Long todoId) {
-    return null;
+    return todoRepository.findById(todoId).orElseThrow(() -> new RuntimeException("todo가 없습니다."));
   }
 
   @Override
   public void delete(Long todoId) {
-
+    todoRepository.deleteById(todoId);
   }
 
   @Override
-  public Todo update(Long todoId) {
-    return null;
+  public Todo update(Long todoId, String description) {
+    Todo todo = todoRepository.findById(todoId).orElseThrow(() -> new RuntimeException("todo가 없습니다."));
+    todo.setDescription(description);
+    todoRepository.save(todo);
+    return todo;
   }
 }
