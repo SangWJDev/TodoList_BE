@@ -13,7 +13,7 @@ public interface TodoService {
 
   Todo update(Long todoId, String description);
 
-  void updateComplete(Long todoId);
+  Todo updateComplete(Long todoId);
 
   List<Todo> readAll();
 

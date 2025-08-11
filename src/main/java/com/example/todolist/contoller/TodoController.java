@@ -47,9 +47,8 @@ public class TodoController {
   }
 
   @PatchMapping("/complete/{id}")
-  public ResponseEntity<Void> updateComplete(@PathVariable Long id) {
-    todoService.updateComplete(id);
-    return ResponseEntity.ok().build();
+  public ResponseEntity<TodoResponseDto> updateComplete(@PathVariable Long id) {
+    return ResponseEntity.ok(TodoResponseDto.toDto(todoService.updateComplete(id)));
   }
 
   @GetMapping

@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 @Getter
 public class TodoResponseDto {
 
+  private Long id;
+
   private String description;
 
   private boolean completed;
@@ -21,7 +23,7 @@ public class TodoResponseDto {
   private LocalDateTime modified;
 
   public static TodoResponseDto toDto(Todo todo) {
-    return TodoResponseDto.builder().description(todo.getDescription())
+    return TodoResponseDto.builder().id(todo.getId()).description(todo.getDescription())
         .completed(todo.isCompleted()).modified(todo.getUpdatedAt()).build();
   }
 

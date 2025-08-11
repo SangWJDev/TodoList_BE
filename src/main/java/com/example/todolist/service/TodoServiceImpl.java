@@ -43,9 +43,10 @@ public class TodoServiceImpl implements TodoService{
 
   @Override
   @Transactional
-  public void updateComplete(Long todoId) {
+  public Todo updateComplete(Long todoId) {
     Todo todo = todoRepository.findById(todoId).orElseThrow(() -> new RuntimeException("todo가 없습니다."));
     todo.updateCompleted();
+    return todo;
   }
 
   @Override
