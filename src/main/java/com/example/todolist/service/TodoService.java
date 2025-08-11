@@ -4,7 +4,7 @@ import com.example.todolist.domain.Todo;
 
 public interface TodoService {
 
-  void create(Todo todo);
+  Todo create(Todo todo);
 
   Todo read(Long todoId);
 
