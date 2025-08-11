@@ -14,7 +14,7 @@ public class TodoRequestDto {
   private boolean completed;
 
   public static Todo toEntity(TodoRequestDto todoDto) {
-    return Todo.builder().description(todoDto.description).completed(todoDto.completed).build();
+    return Todo.builder().description(todoDto.getDescription()).completed(todoDto.isCompleted()).build();
   }
 
 }
