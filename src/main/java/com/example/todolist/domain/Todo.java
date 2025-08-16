@@ -1,7 +1,10 @@
 package com.example.todolist.domain;
 
+import com.example.todolist.domain.enumerate.TodoCategory;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,10 +31,14 @@ public class Todo {
 
   private boolean completed;
 
+  @Enumerated(value = EnumType.STRING)
+  private TodoCategory category;
+
   @Builder
-  public Todo(String description, boolean completed) {
+  public Todo(String description, boolean completed, TodoCategory category) {
     this.description = description;
     this.completed = completed;
+    this.category = category;
   }
 
   @CreatedDate

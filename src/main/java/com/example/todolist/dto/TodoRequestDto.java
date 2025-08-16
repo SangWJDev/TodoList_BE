@@ -2,6 +2,7 @@ package com.example.todolist.dto;
 
 
 import com.example.todolist.domain.Todo;
+import com.example.todolist.domain.enumerate.TodoCategory;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,8 +14,11 @@ public class TodoRequestDto {
 
   private boolean completed;
 
+  private TodoCategory category;
+
   public static Todo toEntity(TodoRequestDto todoDto) {
-    return Todo.builder().description(todoDto.getDescription()).completed(todoDto.isCompleted()).build();
+    return Todo.builder().description(todoDto.getDescription()).completed(todoDto.isCompleted())
+        .category(todoDto.getCategory()).build();
   }
 
 }
