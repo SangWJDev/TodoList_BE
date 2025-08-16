@@ -16,7 +16,7 @@ public interface TodoService {
 
   Todo updateComplete(Long todoId);
 
-  List<Todo> readAll();
+  List<Todo> readAll(List<TodoCategory> categories);
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.todolist.contoller;
 
+import com.example.todolist.domain.enumerate.TodoCategory;
 import com.example.todolist.dto.TodoRequestDto;
 import com.example.todolist.dto.TodoResponseDto;
 import com.example.todolist.service.TodoService;
@@ -13,10 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/todo")
+@RequestMapping("/api/todos")
 @RequiredArgsConstructor
 public class TodoController {
 
@@ -52,8 +54,11 @@ public class TodoController {
   }
 
   @GetMapping
-  public ResponseEntity<List<TodoResponseDto>> readAll() {
-    List<TodoResponseDto> todoResponseDtoList = todoService.readAll().stream().map(
+  public ResponseEntity<List<TodoResponseDto>> readAll(
+      @RequestParam(name = "category", required = false) List<TodoCategory> categories
+  ) {
+
+    List<TodoResponseDto> todoResponseDtoList = todoService.readAll(categories).stream().map(
         TodoResponseDto::toDto).toList();
     return ResponseEntity.ok(todoResponseDtoList);
   }

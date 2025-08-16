@@ -52,7 +52,11 @@ public class TodoServiceImpl implements TodoService{
 
   @Override
   @Transactional(readOnly = true)
-  public List<Todo> readAll() {
-    return todoRepository.findAll();
+  public List<Todo> readAll(List<TodoCategory> categories) {
+    if (categories == null) {
+      return todoRepository.findAll();
+    }
+
+    return todoRepository.findByCategoryIn(categories);
   }
 }
