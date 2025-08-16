@@ -43,10 +43,10 @@ public class TodoController {
   public ResponseEntity<TodoResponseDto> update(@PathVariable Long id,
       @RequestBody TodoRequestDto todoRequestDto) {
     return ResponseEntity.ok(
-        TodoResponseDto.toDto(todoService.update(id, todoRequestDto.getDescription())));
+        TodoResponseDto.toDto(todoService.update(id, todoRequestDto.getDescription(), todoRequestDto.getCategory())));
   }
 
-  @PatchMapping("/complete/{id}")
+  @PatchMapping("/{id}/completed")
   public ResponseEntity<TodoResponseDto> updateComplete(@PathVariable Long id) {
     return ResponseEntity.ok(TodoResponseDto.toDto(todoService.updateComplete(id)));
   }

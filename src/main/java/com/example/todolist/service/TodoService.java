@@ -1,6 +1,7 @@
 package com.example.todolist.service;
 
 import com.example.todolist.domain.Todo;
+import com.example.todolist.domain.enumerate.TodoCategory;
 import java.util.List;
 
 public interface TodoService {
@@ -11,7 +12,7 @@ public interface TodoService {
 
   void delete(Long todoId);
 
-  Todo update(Long todoId, String description);
+  Todo update(Long todoId, String description, TodoCategory category);
 
   Todo updateComplete(Long todoId);
 

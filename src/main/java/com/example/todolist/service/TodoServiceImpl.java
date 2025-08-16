@@ -2,6 +2,7 @@ package com.example.todolist.service;
 
 
 import com.example.todolist.domain.Todo;
+import com.example.todolist.domain.enumerate.TodoCategory;
 import com.example.todolist.repository.TodoRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -35,9 +36,9 @@ public class TodoServiceImpl implements TodoService{
 
   @Override
   @Transactional
-  public Todo update(Long todoId, String description) {
+  public Todo update(Long todoId, String description, TodoCategory category) {
     Todo todo = todoRepository.findById(todoId).orElseThrow(() -> new RuntimeException("todo가 없습니다."));
-    todo.updateDescription(description);
+    todo.updateTodo(description, category);
     return todo;
   }
 

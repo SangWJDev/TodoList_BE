@@ -51,8 +51,9 @@ public class Todo {
     this.completed = true;
   }
 
-  public void updateDescription(String description) {
+  public void updateTodo(String description, TodoCategory category) {
     this.description = description;
+    this.category = category;
   }
 
 }
